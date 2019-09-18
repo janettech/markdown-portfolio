@@ -1,5 +1,6 @@
 = Polte System Level Test Plan
-image::POltelogo.png[]
+![POlteLogo](https://user-images.githubusercontent.com/13398384/65178674-d772a680-da1e-11e9-9025-d04ede35115f.png)
+
 :toc:
 This document provides a test plan to evaluate the performance of the PoLTE location system using any device.
 
