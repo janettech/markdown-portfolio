@@ -1,0 +1,64 @@
+= Polte System Level Test Plan
+image::POltelogo.png[]
+:toc:
+This document provides a test plan to evaluate the performance of the PoLTE location system using any device.
+
+== Criteria
+There are 4 main criteria for this testing, in order of importance, they are:
+
+1. Stability
+2. Battery life
+3. Accuracy
+4. Yield
+
+== Definitions
+A device consists of:
+
+1. Device circuit cards (base board/modem module)
+2. Antenna
+3. Battery
+4. Firmware
+5. Device configuration
+6. SIM card
+
+== Methodology
+Each device (any single configuration of the above items), will be subjected to an independent set of tests, except where the test plan calls for specific modifications to the device configuration parameters.
+
+
+== Stability Battery Life Testing
+These tests verify the performance of the device portion of the Polte location solution.
+
+=== Test Setup
+
+=== Test Hardware
+
+1. OTII power supply/measurement
+2. eNB simulator (R&S or Amarisoft)
+3. Test computer with Matlab
+4. Appropriate cabling
+5. Faraday cage
+
+=== Setup steps
+
+[ ] Program the device with the firmware under test
+
+[ ] Document which firmware is installed
+
+[ ] Install SIM card for eNB simulator in device.
+[ ] Connect 4 cables to the eNB simulator
+[ ] Connect each cable to a combiner (splitter in reverse), making 2 Y's.
+[ ] Connect the output of each combiner into a 3rd combiner, making the final eNB connection Y.
+[ ] Connect the final eNB connection to the UE (if a wired connection is not supported, use near field coupling with a blade antenna).
+[ ] Connect power supply to the UE.
+[ ] Record voltage supplied to the UE (use nominal system voltage).
+[ ] Using a terminal emulator (minicom/tera-term), verify the device successfully connects to the eNB.
+[ ] Verify the device has internet connectivity.
+[ ] Take a picture of the setup.
+[ ] Insert the device + cabling into the faraday cage and seal the cage.
+[ ] Connect cabling to the test computer.
+[ ] Take a picture of the completed setup.
+[ ] Record the configuration of the device. 
+**See the section on how a device is defined System level test plan#Definitions for the details to record **
+
+=== Test Steps
+
