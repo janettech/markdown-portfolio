@@ -1,0 +1,195 @@
+This test plan verifies that the device is able to perform location to the levels required in various scenarios.
+
+***
+
+## Pass/Fail Accuracy Values
+
+### Suburban
+| Percentage | Error Magnitude (Max in meters) | Report Yield (Min in %) | Location Yield (Min in %) |
+|---|---|---|---|
+|68|50|90|80|
+|80|80|90|80|
+|95|150|90|80|
+|99|200|90|80|
+|100|300|90|80|
+
+### Urban
+| Percentage | Error Magnitude (Max in meters) | Report Yield (Min in %) | Location Yield (Min in %) |
+|---|---|---|---|
+|68|60|90|80|
+|80|70|90|80|
+|95|160|90|80|
+|99|250|90|80|
+|100|300|90|80|
+
+### Dense Urban
+| Percentage | Error Magnitude (Max in meters) | Report Yield (Min in %) | Location Yield (Min in %) |
+|---|---|---|---|
+|68|100|90|80|
+|80|150|90|80|
+|95|200|90|80|
+|99|200|90|80|
+|100|300|90|80|
+
+### Rural
+| Percentage | Error Magnitude (Max in meters) | Report Yield (Min in %) | Location Yield (Min in %) |
+|---|---|---|---|
+|68|150|90|80|
+|80|250|90|80|
+|95|300|90|80|
+|99|500|90|80|
+|100|800|90|80|
+
+***
+
+## Test Setup
+
+#### Test Tools
+1. Fresh batteries for test
+2. Device(s) for testing
+3. Android test phone with GPS Logger installed
+4. Test machine (laptop is fine)
+5. Matlab (develop branch)
+6. AWS-CLI tools
+7. Google Earth
+
+#### Configuration steps
+[ ] Program all devices with the firmware under test  
+[ ] Document which firmware is installed in the manifest    
+[ ] Ensure the devices are configured as they will ship to the customer  
+[ ] Place fresh batteries in the devices  
+[ ] Verify the devices have internet connectivity  
+[ ] Record the configuration of the device (firmware + configuration) in the [manifest](https://docs.google.com/spreadsheets/d/1JEcHEHqKY9_5Mx8XYi0CrSV7RCmDt_zUmpR6bRVj_nM/edit#gid=0)
+
+#### Test definition
+[ ] Define a route for each of the tests  
+[ ] Along the route, define 5 places to stop  
+[ ] At least 1 of the 5 places to stop **must** be indoors  
+[ ] The route should include various speed limits  
+
+
+***
+
+# Test Steps
+
+## Suburban
+This test will verify the accuracy/yield of the PoLTE location system using the specific devices under test in a suburban environment.
+
+## Current Suburban test points
+1.  32.977311°, -96.738984°  
+2.  33.008044°, -96.742120°  
+3.  33.017116°, -96.784264°  
+4.  32.983724°, -96.803197°  
+5.  32.947594°, -96.778428°  
+
+### Data Capture
+[ ] Document the route to be taken during the test  
+[ ] Document the UE-TOKEN of the devices that will be used for the test
+1. Device 1 ________________________________  
+1. Device 2 ________________________________  
+1. Device 3 ________________________________  
+1. Device 4 ________________________________  
+1. Device 5 ________________________________  
+1. Device 6 ________________________________  
+1. Device 7 ________________________________  
+1. Device 8 ________________________________  
+1. Device 9 ________________________________  
+1. Device 10 ________________________________  
+[ ] Print out the route and take a copy with you on the test drive for reference  
+[ ] **Print a copy of this test plan and take it with you, check the boxes as you go**  
+[ ] Take a picture of the device setup in the test vehicle with the test phone  
+[ ] Start the GPS Logger on the Android test phone and do not stop it until the end of the test  
+[ ] Place the test phone on the dashboard  
+[ ] Follow the route back to the first test site  
+[ ] Stop at test site #1  
+[ ] Mark the time you arrived at the test site ____________  
+[ ] Stay at the test site for 2x the device periodicity  
+[ ] Mark the time you leave the test site ____________  
+[ ] Follow the route back to the next test site  
+[ ] Stop at test site #2  
+[ ] Mark the time you arrived at the test site ____________  
+[ ] Stay at the test site for 2x the device periodicity  
+[ ] Mark the time you leave the test site ____________  
+[ ] Follow the route back to the next test site  
+[ ] Stop at test site #3  
+[ ] Mark the time you arrived at the test site ____________    
+[ ] Stay at the test site for 2x the device periodicity    
+[ ] Mark the time you leave the test site ____________    
+[ ] Follow the route back to the next test site    
+[ ] Stop at test site #4  
+[ ] Mark the time you arrived at the test site ____________  
+[ ] Stay at the test site for 2x the device periodicity    
+[ ] Mark the time you leave the test site ____________  
+[ ] Follow the route back to the next test site  
+[ ] Stop at test site #5  
+[ ] Mark the time you arrived at the test site ____________  
+[ ] Stay at the test site for 2x the device periodicity    
+[ ] Mark the time you leave the test site ____________  
+[ ] Follow the route back to the office  
+[ ] Stop the GPS logger when you arrive in the office parking lot  
+[ ] Bring equipment inside the office  
+[ ] Transfer data from paper copy of test plan to BaseCamp  
+[ ] Post the GPS log to BaseCamp  
+[ ] Post a Google Earth screenshot of the GPS KML to BaseCamp  
+
+### Data Analysis
+[ ] Download the data for each UE from the data capture test list  
+[ ] Verify the data of each UE by  
+  [ ] Check the RTTD is valid  
+  [ ] Timestamp is valid  
+ [ ] Data is parseable  
+ [ ] Checksum of data is valid  
+ [ ] Verify the serving cell is in the database  
+ [ ] If the serving cell is not in the database, record the E-UTRAN Cell Global Identifier (eCGI) + Physical Cell Identifier (PCI) of the serving cell and the UE-TOKEN of the device in BaseCamp and exclude the payload from the test set  
+ [ ] Record statistics on how many payloads are valid  
+ [ ] Use the REST API to query locations for the UEs under test  
+ [ ] Compare the locations made by the Location Engine to the ground truth GPS log  
+ [ ] If the GPS log did not record data within 3 seconds of the location timestamp, discard the payload  
+ [ ] Record statistics on how many payloads are discarded due to bad GPS data  
+ [ ] Calculate the location error magnitude for each location generated  
+ [ ] Record the confidence metric of each location generated  
+ [ ] Record statistics on location error magnitude and confidence metrics  
+ [ ] Create a Cumulative Distribution Function (CDF) of the location error magnitude  
+ [ ] Record the 68%, 80%, 95%, 99% and 100% error magnitude percentile  
+ [ ] Record yield statistics on how many locations were made, not including data discarded for bad RTTD, no 
+ serving cell, or no GPS data  
+ [ ] Record yield statistics on how many locations were made overall, including all the discarded data  
+ [ ] Create a report of all the recorded values  
+ [ ] Include generated plots in the report  
+ [ ] Include Google Earth screenshots in the report of test sites (mark GPS, locations, and sequence numbers)  
+ [ ] Include an overall Google Earth screenshot of all the data generated during the test  
+ [ ] Include a time series graph indicating location error vs time  
+ [ ] Post the report to BaseCamp  
+ [ ] Post the 68%, 80%, 95%, 99% and 100% error magnitude percentile to BaseCamp  
+ [ ] Verify the error magnitudes do not exceed the thresholds for the environment  
+ [ ] Post to BaseCamp whether or not the test passed or failed 
+
+## Urban
+Repeat the [[Accuracy Yield Testing#Suburban]] test, but use test sites in an urban environment 
+
+## Current Urban test points
+1.  33.096307°, -96.816221°  
+2.  33.078500°, -96.825889°  
+3.  33.081331°, -96.833097°  
+4.  33.082718°, -96.846373°  
+5.  33.071141°, -96.874228°  
+
+## Dense Urban
+Repeat the [[Accuracy Yield Testing#Suburban]] test, but use test sites in a Dense urban environment  
+
+## Current Dense Urban test points
+1.  32.784774°, -96.794223°  
+2.  32.782268°, -96.793369°  
+3.  32.779601°, -96.802212°  
+4.  32.784520°, -96.802908°  
+5.  32.789706°, -96.798296°  
+
+## Rural
+Repeat the [[Accuracy Yield Testing#Suburban]] test, but use test sites in a Rural environment  
+
+## Current Rural test points
+1.  33.420960°, -96.590094°  
+2.  33.389385°, -96.739567°  
+3.  33.531743°, -96.691877°  
+4.  33.588703°, -96.751734°  
+5.  33.582115°, -96.555313°  
