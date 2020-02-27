@@ -1,1 +1,3 @@
-Write out some of your awesome attributes, and use emphasis (like bold or italics) to identify keywords, programming languages, or skills. 
+My skills include **Copyediting, Technical writing and editing**.
+How about you?
+I also like to read *The Subtle art of not giving a ...*
